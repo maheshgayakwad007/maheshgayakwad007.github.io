@@ -1,99 +1,57 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <meta charset="UTF-8">
-  <title>Limbda - OTP Login</title>
-  <script src="https://www.gstatic.com/firebasejs/10.11.0/firebase-app.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/10.11.0/firebase-auth.js"></script>
+  <title>Student Portal - Limbda</title>
   <style>
     body {
       font-family: Arial, sans-serif;
       text-align: center;
-      margin-top: 80px;
+      padding: 50px;
     }
-    input {
+    input, select, button {
       padding: 10px;
       margin: 10px;
-      font-size: 16px;
       width: 250px;
     }
     button {
-      padding: 10px 20px;
-      font-size: 16px;
       cursor: pointer;
-      margin-top: 10px;
     }
   </style>
 </head>
 <body>
+  <h2>🎓 Welcome to Limbda Student Portal</h2>
 
-  <h2>📲 Welcome to Limbda OTP Login</h2>
-
-  <input type="text" id="phone" placeholder="+91XXXXXXXXXX"><br>
-  <div id="recaptcha-container"></div>
-  <button onclick="sendOTP()">Send OTP</button><br><br>
-
-  <input type="text" id="otp" placeholder="Enter OTP"><br>
-  <button onclick="verifyOTP()">Verify OTP</button>
+  <input type="text" id="name" placeholder="Enter your name" required />
+  <br>
+  <select id="semester">
+    <option value="" disabled selected>Select your semester</option>
+    <option value="1st">1st Semester</option>
+    <option value="2nd">2nd Semester</option>
+    <option value="3rd">3rd Semester</option>
+    <option value="4th">4th Semester</option>
+    <option value="5th">5th Semester</option>
+    <option value="6th">6th Semester</option>
+  </select>
+  <br>
+  <button onclick="goToDashboard()">Enter Dashboard</button>
 
   <script>
-    // ✅ Your Firebase config
-    const firebaseConfig = {
-      apiKey: "AIzaSyDz8rRQT76Jqe_yVaeUlqrPXGfFuBDIpSE",
-      authDomain: "limbda-d7fe1.firebaseapp.com",
-      projectId: "limbda-d7fe1",
-      storageBucket: "limbda-d7fe1.firebasestorage.app",
-      messagingSenderId: "368935926260",
-      appId: "1:368935926260:web:2a73898316e72a8ad761a1",
-      measurementId: "G-0Q0LD8GHRP"
-    };
+    function goToDashboard() {
+      const name = document.getElementById("name").value.trim();
+      const semester = document.getElementById("semester").value;
 
-    // 🔥 Initialize Firebase
-    firebase.initializeApp(firebaseConfig);
-
-    // ✅ Setup reCAPTCHA
-    window.recaptchaVerifier = new firebase.auth.RecaptchaVerifier('recaptcha-container', {
-      size: 'normal',
-      callback: (response) => {
-        console.log("reCAPTCHA verified");
-      },
-      'expired-callback': () => {
-        alert("reCAPTCHA expired. Please reload.");
+      if (!name || !semester) {
+        alert("Please enter both name and semester!");
+        return;
       }
-    });
-    recaptchaVerifier.render();
 
-    // 📤 Send OTP
-    function sendOTP() {
-      const phoneNumber = document.getElementById("phone").value;
-      const appVerifier = window.recaptchaVerifier;
+      // Save data to localStorage
+      localStorage.setItem("studentName", name);
+      localStorage.setItem("studentSemester", semester);
 
-      firebase.auth().signInWithPhoneNumber(phoneNumber, appVerifier)
-        .then((confirmationResult) => {
-          window.confirmationResult = confirmationResult;
-          alert("OTP sent!");
-        })
-        .catch((error) => {
-          console.error(error);
-          alert("Error sending OTP: " + error.message);
-        });
-    }
-
-    // ✅ Verify OTP
-    function verifyOTP() {
-      const code = document.getElementById("otp").value;
-
-      window.confirmationResult.confirm(code)
-        .then((result) => {
-          const user = result.user;
-          alert("Logged in successfully as " + user.phoneNumber);
-          window.location.href = "dashboard.html"; // move to dashboard
-        })
-        .catch((error) => {
-          alert("Wrong OTP or expired. Try again.");
-        });
+      // Redirect
+      window.location.href = "dashboard.html";
     }
   </script>
-
 </body>
 </html>
