@@ -131,6 +131,29 @@
   ]
 };
 
+function showSchedule() {
+  const semester = localStorage.getItem("studentSemester") || "1"; // default semester 1
+  const scheduleBody = document.getElementById("schedule-table-body");
+  scheduleBody.innerHTML = "";
+
+  const semSchedule = schedules[semester] || [];
+
+  if (semSchedule.length === 0) {
+    scheduleBody.innerHTML = `<tr><td colspan="3">No schedule found for Semester ${semester}</td></tr>`;
+  } else {
+    semSchedule.forEach(item => {
+      const row = document.createElement("tr");
+      row.innerHTML = `<td>${item.date}</td><td>${item.subject}</td><td>${item.time}</td>`;
+      scheduleBody.appendChild(row);
+    });
+  }
+
+  document.getElementById("schedule-section").style.display = "block";
+}
+
+function hideSchedule() {
+  document.getElementById("schedule-section").style.display = "none";
+}
 
   </script>
 
