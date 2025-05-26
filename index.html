@@ -36,24 +36,22 @@
   <button onclick="goToDashboard()">Enter Dashboard</button>
 
   <script>
-    function goToDashboard() {
-      const name = document.getElementById('name').value.trim();
-      const semester = document.getElementById('semester-select').value;
+  function goToDashboard() {
+    const name = document.getElementById('name').value.trim();
+    const semester = document.getElementById('semester-select').value;
 
-      if (!name) {
-        alert('Please enter your name');
-        return;
-      }
-
-      if (!semester) {
-        alert('Please select a semester');
-        return;
-      }
-
-      // Redirect to the corresponding dashboard
-      window.location.href = `dashboard-${semester}.html`;
+    if (!name || !semester) {
+      alert('Please enter both name and semester');
+      return;
     }
-  </script>
 
+    // Save to localStorage
+    localStorage.setItem("studentName", name);
+    localStorage.setItem("studentSemester", semester.replace('sem', ''));
+
+    // Redirect
+    window.location.href = `dashboard-${semester}.html`;
+  }
+</script>
 </body>
 </html>
