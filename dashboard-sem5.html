@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title> V SEM Student Dashboard</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #f3f4f6;
+      text-align: center;
+      padding: 50px;
+    }
+
+    h2 {
+      color: #333;
+    }
+
+    .dashboard {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+      max-width: 1000px;
+      margin: 30px auto;
+    }
+
+    .tool {
+      background-color: white;
+      border-radius: 15px;
+      padding: 20px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      transition: 0.3s ease;
+    }
+
+    .tool:hover {
+      transform: translateY(-5px);
+    }
+
+    .tool h3 {
+      margin-bottom: 10px;
+      color: #2c3e50;
+    }
+
+    .tool p {
+      font-size: 14px;
+      color: #666;
+    }
+
+    a.button {
+      display: inline-block;
+      margin: 5px;
+      padding: 10px 15px;
+      background-color: #007bff;
+      color: white;
+      text-decoration: none;
+      border-radius: 5px;
+    }
+
+    a.button:hover {
+      background-color: #0056b3;
+    }
+  </style>
+</head>
+<body>
+
+  <h2 id="welcome"></h2>
+
+  <div class="dashboard">
+    <div class="tool">
+      <h3>📚 Notes Download</h3>
+      <p>Download important notes for your semester.</p>
+      <a href="#" class="button">Download Notes</a>
+    </div>
+
+    <div class="tool">
+      <h3>📝 Assignment Upload</h3>
+      <p>Submit your assignments here easily.</p>
+      <a href="#" class="button">Upload Assignment</a>
+    </div>
+
+    <div class="tool">
+      <h3>📅 Exam Schedule</h3>
+      <p>Check upcoming exam dates and schedules.</p>
+      <a href="#" class="button">View Schedule</a>
+    </div>
+
+    <div class="tool">
+      <h3>🎓 CGPA Calculator</h3>
+      <p>Calculate your CGPA semester-wise.</p>
+      <a href="#" class="button">Open Calculator</a>
+    </div>
+
+    <div class="tool">
+      <h3>📄 Question Papers</h3>
+      <p>Download previous year question papers:</p>
+      <a href="pdfs/SEM4-OS Tools-2023.pdf" class="button" download>Sem 4 OST 2023</a><br>
+      <a href="pdfs/SEM4-OS-2023.pdf" class="button" download>Sem 4 Operating System 2023</a><br>
+      <a href="pdfs/SEM4-M&A-2023.pdf" class="button" download>Sem 4 M&A 2023</a>
+     <a href="pdfs/SEM4-Python-2023.pdf" class="button" download>Sem 4 Python 2023</a>
+    </div>
+  </div>
+
+  <script>
+    const name = localStorage.getItem("studentName") || "Student";
+    const semester = localStorage.getItem("studentSemester") || "Unknown";
+
+    document.getElementById("welcome").innerText = `👋 Hello, ${name} from Sem ${semester}!`;
+  </script>
+
+</body>
+</html>
