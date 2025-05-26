@@ -105,15 +105,29 @@
     document.getElementById("welcome").innerText = `👋 Hello, ${name} from Sem ${semester}!`;
     const schedules = {
   "1": [
-    { date: "2025-06-01", subject: "Mathematics", time: "9:00 AM - 12:00 PM" },
-    { date: "2025-06-03", subject: "Physics", time: "9:00 AM - 12:00 PM" },
-    { date: "2025-06-05", subject: "Computer Science", time: "9:00 AM - 12:00 PM" }
+    { date: "2025-06-01", subject: "Math", time: "9:00 AM - 12:00 PM" },
+    { date: "2025-06-05", subject: "English", time: "9:00 AM - 12:00 PM" }
   ],
   "2": [
     { date: "2025-06-02", subject: "Chemistry", time: "9:00 AM - 12:00 PM" },
     { date: "2025-06-04", subject: "Biology", time: "9:00 AM - 12:00 PM" }
+  ],
+  "3": [
+    { date: "2025-06-03", subject: "Physics", time: "9:00 AM - 12:00 PM" },
+    { date: "2025-06-07", subject: "History", time: "9:00 AM - 12:00 PM" }
+  ],
+  "4": [
+    { date: "2025-06-04", subject: "Computer Science", time: "9:00 AM - 12:00 PM" },
+    { date: "2025-06-08", subject: "Geography", time: "9:00 AM - 12:00 PM" }
+  ],
+  "5": [
+    { date: "2025-06-05", subject: "Economics", time: "9:00 AM - 12:00 PM" },
+    { date: "2025-06-09", subject: "Political Science", time: "9:00 AM - 12:00 PM" }
+  ],
+  "6": [
+    { date: "2025-06-06", subject: "Philosophy", time: "9:00 AM - 12:00 PM" },
+    { date: "2025-06-10", subject: "Sociology", time: "9:00 AM - 12:00 PM" }
   ]
-  // add more semesters as needed
 };
 
 function showSchedule() {
@@ -140,6 +154,7 @@ function hideSchedule() {
   document.getElementById("schedule-section").style.display = "none";
 }
   </script>
+
 <div id="schedule-section" style="display:none; max-width: 600px; margin: 20px auto; background: #fff; padding: 15px; border-radius: 10px; box-shadow: 0 2px 6px rgba(0,0,0,0.1);">
   <h3>📅 Exam Schedule</h3>
   <table border="1" style="width:100%; text-align:center; border-collapse: collapse;">
