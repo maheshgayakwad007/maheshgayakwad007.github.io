@@ -131,6 +131,8 @@
 };
 
 function showSchedule() {
+    console.log("Student Semester:", semester);
+console.log("Schedule for semester:", schedules[semester]);
   const semester = localStorage.getItem("studentSemester") || "1"; // default semester 1
   const scheduleBody = document.getElementById("schedule-table-body");
   scheduleBody.innerHTML = "";
