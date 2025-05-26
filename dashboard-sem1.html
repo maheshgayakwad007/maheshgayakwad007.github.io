@@ -106,40 +106,31 @@
 
     const schedules = {
   "1": [
-    { date: "2025-06-01", subject: "Mathematics", time: "9:00 AM - 12:00 PM" },
-    { date: "2025-06-03", subject: "Physics", time: "9:00 AM - 12:00 PM" },
-    { date: "2025-06-05", subject: "Computer Science", time: "9:00 AM - 12:00 PM" }
+    { date: "2025-06-01", subject: "Math", time: "9:00 AM - 12:00 PM" },
+    { date: "2025-06-05", subject: "English", time: "9:00 AM - 12:00 PM" }
   ],
   "2": [
     { date: "2025-06-02", subject: "Chemistry", time: "9:00 AM - 12:00 PM" },
     { date: "2025-06-04", subject: "Biology", time: "9:00 AM - 12:00 PM" }
+  ],
+  "3": [
+    { date: "2025-06-03", subject: "Physics", time: "9:00 AM - 12:00 PM" },
+    { date: "2025-06-07", subject: "History", time: "9:00 AM - 12:00 PM" }
+  ],
+  "4": [
+    { date: "2025-06-04", subject: "Computer Science", time: "9:00 AM - 12:00 PM" },
+    { date: "2025-06-08", subject: "Geography", time: "9:00 AM - 12:00 PM" }
+  ],
+  "5": [
+    { date: "2025-06-05", subject: "Economics", time: "9:00 AM - 12:00 PM" },
+    { date: "2025-06-09", subject: "Political Science", time: "9:00 AM - 12:00 PM" }
+  ],
+  "6": [
+    { date: "2025-06-06", subject: "Philosophy", time: "9:00 AM - 12:00 PM" },
+    { date: "2025-06-10", subject: "Sociology", time: "9:00 AM - 12:00 PM" }
   ]
-  // add more semesters as needed
 };
 
-function showSchedule() {
-  const semester = localStorage.getItem("studentSemester") || "1"; // default semester 1
-  const scheduleBody = document.getElementById("schedule-table-body");
-  scheduleBody.innerHTML = "";
-
-  const semSchedule = schedules[semester] || [];
-
-  if (semSchedule.length === 0) {
-    scheduleBody.innerHTML = `<tr><td colspan="3">No schedule found for Semester ${semester}</td></tr>`;
-  } else {
-    semSchedule.forEach(item => {
-      const row = document.createElement("tr");
-      row.innerHTML = `<td>${item.date}</td><td>${item.subject}</td><td>${item.time}</td>`;
-      scheduleBody.appendChild(row);
-    });
-  }
-
-  document.getElementById("schedule-section").style.display = "block";
-}
-
-function hideSchedule() {
-  document.getElementById("schedule-section").style.display = "none";
-}
 
   </script>
 
