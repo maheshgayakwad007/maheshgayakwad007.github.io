@@ -57,6 +57,11 @@
     a.button:hover {
       background-color: #0056b3;
     }
+
+    #cgpa-calculator {
+  display: none;
+}
+
   </style>
 </head>
 <body>
@@ -85,7 +90,7 @@
     <div class="tool">
       <h3>🎓 CGPA Calculator</h3>
       <p>Calculate your CGPA semester-wise.</p>
-      <a href="#" class="button">Open Calculator</a>
+      <a href="#" class="button" onclick="showCalculator(event)">Open Calculator</a>
     </div>
 
     <div class="tool">
@@ -103,76 +108,83 @@
     const semester = localStorage.getItem("studentSemester") || "Unknown";
 
     document.getElementById("welcome").innerText = `👋 Hello, ${name} from Sem ${semester}!`;
-
-    const schedules = {
-  "1": [
-    { date: "2025-06-01", subject: "Math", time: "9:00 AM - 12:00 PM" },
-    { date: "2025-06-05", subject: "English", time: "9:00 AM - 12:00 PM" }
-  ],
-  "2": [
-    { date: "2025-06-02", subject: "Chemistry", time: "9:00 AM - 12:00 PM" },
-    { date: "2025-06-04", subject: "Biology", time: "9:00 AM - 12:00 PM" }
-  ],
-  "3": [
-    { date: "2025-06-03", subject: "Physics", time: "9:00 AM - 12:00 PM" },
-    { date: "2025-06-07", subject: "History", time: "9:00 AM - 12:00 PM" }
-  ],
-  "4": [
-    { date: "2025-06-04", subject: "Computer Science", time: "9:00 AM - 12:00 PM" },
-    { date: "2025-06-08", subject: "Geography", time: "9:00 AM - 12:00 PM" }
-  ],
-  "5": [
-    { date: "2025-06-05", subject: "Economics", time: "9:00 AM - 12:00 PM" },
-    { date: "2025-06-09", subject: "Political Science", time: "9:00 AM - 12:00 PM" }
-  ],
-  "6": [
-    { date: "2025-06-06", subject: "Philosophy", time: "9:00 AM - 12:00 PM" },
-    { date: "2025-06-10", subject: "Sociology", time: "9:00 AM - 12:00 PM" }
-  ]
-};
-
-function showSchedule() {
-  const semester = localStorage.getItem("studentSemester") || "1"; // default semester 1
-  const scheduleBody = document.getElementById("schedule-table-body");
-  scheduleBody.innerHTML = "";
-
-  const semSchedule = schedules[semester] || [];
-
-  if (semSchedule.length === 0) {
-    scheduleBody.innerHTML = `<tr><td colspan="3">No schedule found for Semester ${semester}</td></tr>`;
-  } else {
-    semSchedule.forEach(item => {
-      const row = document.createElement("tr");
-      row.innerHTML = `<td>${item.date}</td><td>${item.subject}</td><td>${item.time}</td>`;
-      scheduleBody.appendChild(row);
-    });
-  }
-
-  document.getElementById("schedule-section").style.display = "block";
-}
-
-function hideSchedule() {
-  document.getElementById("schedule-section").style.display = "none";
-}
-
   </script>
 
-<div id="schedule-section" style="display:none; max-width: 600px; margin: 20px auto; background: #fff; padding: 15px; border-radius: 10px; box-shadow: 0 2px 6px rgba(0,0,0,0.1);">
-  <h3>📅 Exam Schedule</h3>
-  <table border="1" style="width:100%; text-align:center; border-collapse: collapse;">
-    <thead>
-      <tr>
-        <th>Date</th>
-        <th>Subject</th>
-        <th>Time</th>
-      </tr>
-    </thead>
-    <tbody id="schedule-table-body">
-      <!-- schedule rows will go here -->
-    </tbody>
-  </table>
-  <button onclick="hideSchedule()" style="margin-top: 10px; padding: 5px 10px;">Close Schedule</button>
-</div>
+  <!-- CGPA Calculator Section -->
+<section id="cgpa-calculator" style="background: white; border-radius: 15px; padding: 20px; max-width: 800px; margin: 50px auto; box-shadow: 0 4px 10px rgba(0,0,0,0.1);">
+  <h2 style="color: #2c3e50;">🎓 CGPA Calculator</h2>
+  <p style="color: #555;">Enter SGPA for each semester below:</p>
+
+  <div id="semesters" style="margin-top: 20px;"></div>
+
+  <button onclick="addSemester()" style="margin: 10px; padding: 10px 20px; background-color: #007bff; color: white; border: none; border-radius: 5px;">➕ Add Semester</button>
+  <button onclick="calculateCGPA()" style="margin: 10px; padding: 10px 20px; background-color: #28a745; color: white; border: none; border-radius: 5px;">✅ Calculate CGPA</button>
+  <button id="clear-button" onclick="clearCalculator()" style="display:none; margin: 10px; padding: 10px 20px; background-color: #dc3545; color: white; border: none; border-radius: 5px;">❌ Clear</button>
+
+
+  <h3 id="result" style="margin-top: 20px; color: #8e44ad;"></h3>
+</section>
+
+<script>
+  let semesterCount = 0;
+
+  function addSemester() {
+  if (semesterCount >= 6) {
+    alert("You can only add up to 6 semesters.");
+    return;
+  }
+  semesterCount++;
+  const div = document.createElement('div');
+  div.style.marginBottom = "10px";
+  div.innerHTML = `
+    <label>Semester ${semesterCount} SGPA:
+      <input type="number" step="0.01" min="0" max="10" class="sgpa" style="padding:5px; border-radius:5px; margin:5px;">
+    </label><br>
+  `;
+  document.getElementById("semesters").appendChild(div);
+}
+
+  function calculateCGPA() {
+    const sgpaInputs = document.querySelectorAll(".sgpa");
+    let totalSgpa = 0, count = 0;
+
+    sgpaInputs.forEach(input => {
+      const sgpa = parseFloat(input.value);
+      if (!isNaN(sgpa)) {
+        totalSgpa += sgpa;
+        count++;
+      }
+    });
+
+    const cgpa = count ? (totalSgpa / count).toFixed(2) : "Invalid input";
+    document.getElementById("result").innerText = `🎯 Your CGPA is: ${cgpa}`;
+
+        document.getElementById("clear-button").style.display = 'inline-block';
+
+  }
+
+  function showCalculator(event) {
+  event.preventDefault(); // prevent the default link behavior
+  document.getElementById('cgpa-calculator').style.display = 'block';
+  // Optionally, scroll to the calculator:
+  document.getElementById('cgpa-calculator').scrollIntoView({ behavior: 'smooth' });
+}
+
+function clearCalculator() {
+  // Clear all semester input divs
+  document.getElementById("semesters").innerHTML = '';
+
+  // Reset semester count
+  semesterCount = 0;
+
+  // Clear result
+  document.getElementById("result").innerText = '';
+
+  // Hide clear button again
+  document.getElementById("clear-button").style.display = 'none';
+}
+
+</script>
 
 </body>
 </html>
