@@ -1,209 +1,64 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Exam Schedule - Limbda</title>
-<style>
-  body {
-    font-family: 'Segoe UI', sans-serif;
-    background: #f3f4f6;
-    padding: 20px;
-    max-width: 900px;
-    margin: auto;
-    text-align: center;
-  }
-  h2 {
-    color: #333;
-    margin-bottom: 20px;
-  }
-  table {
-    width: 100%;
-    border-collapse: collapse;
-    background: white;
-    border-radius: 10px;
-    overflow: hidden;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-  }
-  th, td {
-    padding: 12px 15px;
-    border: 1px solid #ddd;
-  }
-  th {
-    background: #007bff;
-    color: white;
-  }
-  td[contenteditable="true"] {
-    background-color: #fefefe;
-    cursor: text;
-  }
-  td[contenteditable="true"]:focus {
-    outline: 2px solid #007bff;
-  }
-  button {
-    margin: 20px 10px;
-    padding: 10px 20px;
-    font-size: 16px;
-    border: none;
-    border-radius: 7px;
-    cursor: pointer;
-  }
-  button.save {
-    background-color: #28a745;
-    color: white;
-  }
-  button.clear {
-    background-color: #dc3545;
-    color: white;
-  }
-  #admin-toggle {
-    margin-bottom: 20px;
-  }
-</style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Exam Schedule - Limbda</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #f3f4f6;
+      padding: 20px;
+      max-width: 900px;
+      margin: auto;
+      text-align: center;
+    }
+    h2 {
+      color: #333;
+      margin-bottom: 20px;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      background: white;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+    th, td {
+      padding: 12px 15px;
+      border: 1px solid #ddd;
+    }
+    th {
+      background: #007bff;
+      color: white;
+    }
+  </style>
 </head>
 <body>
 
-<h2>🗓️ Exam Schedule</h2>
+<h2>🗓️I Sem Final Exam Schedule</h2>
 
-<label id="admin-toggle">
-  <input type="checkbox" id="toggleEdit"> Admin Mode (Enable Editing)
-</label>
-
-<table id="exam-table">
+<table>
   <thead>
     <tr>
+      <th>SI.No.</th>
       <th>Subject</th>
       <th>Date</th>
       <th>Time</th>
-      <th>Venue</th>
     </tr>
   </thead>
   <tbody>
-    <tr>
-      <td>C Programmiing </td>
-      <td>2025-06-01</td>
-      <td>10:00 AM - 12:00 PM</td>
-      <td>Room 101</td>
-    </tr>
-    <tr>
-      <td>Computer Fundamental(CN)</td>
-      <td>2025-06-03</td>
-      <td>2:00 PM - 4:00 PM</td>
-      <td>Room 102</td>
-    </tr>
-    <tr>
-      <td>Accountancy</td>
-      <td>2025-06-03</td>
-      <td>2:00 PM - 4:00 PM</td>
-      <td>Room 102</td>
-    </tr>
-    <tr>
-      <td>Mathematics</td>
-      <td>2025-06-03</td>
-      <td>2:00 PM - 4:00 PM</td>
-      <td>Room 102</td>
-    </tr>
-    <tr>
-      <td>English</td>
-      <td>2025-06-03</td>
-      <td>2:00 PM - 4:00 PM</td>
-      <td>Room 102</td>
-    </tr>
-    <tr>
-      <td>Kannada</td>
-      <td>2025-06-03</td>
-      <td>2:00 PM - 4:00 PM</td>
-      <td>Room 102</td>
-    </tr>
-    <tr>
-      <td>Hindi</td>
-      <td>2025-06-03</td>
-      <td>2:00 PM - 4:00 PM</td>
-      <td>Room 102</td>
-    </tr>
-    <tr>
-      <td>DF(Digital Fluency)</td>
-      <td>2025-06-03</td>
-      <td>2:00 PM - 4:00 PM</td>
-      <td>Room 102</td>
-    </tr>
-    <tr>
-      <td>Environment Studies(EVS)</td>
-      <td>2025-06-03</td>
-      <td>2:00 PM - 4:00 PM</td>
-      <td>Room 102</td>
-    </tr>
+    <tr><td>1</td><td>Financial Education(OEC)</td><td>2025-06-06</td><td>01:00 PM - 03:00 PM</td></tr>
+    <tr><td>2</td><td>Kannada</td><td>2025-06-09</td><td>01:00 PM - 03:00 PM</td></tr>
+    <tr><td>3</td><td>English</td><td>2025-06-11</td><td>01:00 PM - 03:00 PM</td></tr>
+    <tr><td>4</td><td>Hindi</td><td>2025-06-13</td><td>01:00 PM - 03:00 PM</td></tr>
+    <tr><td>5</td><td>Python Programming</td><td>2025-06-17</td><td>10:00 AM - 12:00 PM</td></tr>
+    <tr><td>6</td><td>Multi-Media & Animation (M&A)</td><td>2025-06-19</td><td>10:00 AM - 12:00 PM</td></tr>
+    <tr><td>7</td><td>Operating System (OS)</td><td>2025-06-20</td><td>10:00 AM - 12:00 PM</td></tr>
+    <tr><td>8</td><td>Open-Source Tools(OST)</td><td>2025-06-21</td><td>10:00 AM - 12:00 PM</td></tr>
   </tbody>
 </table>
-
-<button class="save" onclick="saveSchedule()" disabled>💾 Save Schedule</button>
-<button class="clear" onclick="clearSchedule()" disabled>🗑️ Clear Schedule</button>
-
-<script>
-  const toggleEdit = document.getElementById('toggleEdit');
-  const saveBtn = document.querySelector('button.save');
-  const clearBtn = document.querySelector('button.clear');
-  const tbody = document.querySelector('#exam-table tbody');
-
-  // Load saved schedule from localStorage
-  window.onload = function () {
-    const saved = localStorage.getItem('examSchedule');
-    if (saved) {
-      tbody.innerHTML = saved;
-    }
-    setEditable(false); // default: not editable for normal users
-  };
-
-  // Enable or disable editing
-  toggleEdit.addEventListener('change', function () {
-    if (this.checked) {
-      const password = prompt("Enter admin password to enable editing:");
-      if (password === "Mahi2005") { // <-- Replace with your password
-        setEditable(true);
-        saveBtn.disabled = false;
-        clearBtn.disabled = false;
-      } else {
-        alert("Incorrect password!");
-        this.checked = false;
-        setEditable(false);
-        saveBtn.disabled = true;
-        clearBtn.disabled = true;
-      }
-    } else {
-      setEditable(false);
-      saveBtn.disabled = true;
-      clearBtn.disabled = true;
-    }
-  });
-
-  function setEditable(editable) {
-    tbody.querySelectorAll('td').forEach(td => {
-      if (editable) {
-        td.setAttribute('contenteditable', 'true');
-        td.style.backgroundColor = '#fefefe';
-        td.style.cursor = 'text';
-      } else {
-        td.removeAttribute('contenteditable');
-        td.style.backgroundColor = 'transparent';
-        td.style.cursor = 'default';
-      }
-    });
-  }
-
-  // Save the schedule HTML to localStorage
-  function saveSchedule() {
-    localStorage.setItem('examSchedule', tbody.innerHTML);
-    alert('Schedule saved successfully!');
-  }
-
-  // Clear schedule after confirmation
-  function clearSchedule() {
-    if(confirm('Are you sure you want to clear the schedule?')) {
-      localStorage.removeItem('examSchedule');
-      tbody.innerHTML = '';
-    }
-  }
-</script>
 
 </body>
 </html>
