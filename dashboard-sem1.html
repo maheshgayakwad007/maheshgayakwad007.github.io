@@ -104,10 +104,16 @@
 
   <div class="dashboard">
     <div class="tool">
-      <h3>📚 Notes Download</h3>
-      <p>Download important notes for your semester.</p>
-      <a href="#" class="button">Download Notes</a>
-    </div>
+  <h3>📚 Notes Download</h3>
+  <p>Click below to view available notes.</p>
+  <a href="#" class="button" onclick="toggleNotes()">Show Notes</a>
+
+  <!-- Notes list hidden initially -->
+  <ul id="notes-list" style="display: none; text-align: left; margin-top: 15px; padding-left: 20px;">
+    <li><a href="journals/.pdf" class="button" download>📄 Notes 1</a></li>
+    <li><a href="journals/.pdf" class="button" download>📄 Notes 2</a></li>
+  </ul>
+</div>
 
     <div class="tool">
       <h3>📝 Assignment Upload</h3>
@@ -128,14 +134,19 @@
     </div>
 
     <div class="tool">
-      <h3>📄 Question Papers</h3>
-      <p>Download previous year question papers:</p>
-      <a href="pdfs/SEM1-OS Tools-2023.pdf" class="button" download>Sem 1 2023</a><br>
-      <a href="pdfs/SEM1-OS-2023.pdf" class="button" download>Sem 1  2023</a><br>
-      <a href="pdfs/SEM1-M&A-2023.pdf" class="button" download>Sem 1  2023</a>
-     <a href="pdfs/SEM1-Python-2023.pdf" class="button" download>Sem 1  2023</a>
-    </div>
-  </div>
+  <h3>📄 Question Papers</h3>
+  <p>Click below to view/download previous year question papers.</p>
+  <a href="#" class="button" onclick="togglePapers()">Show Question Papers</a>
+
+  <!-- Question papers list hidden initially -->
+  <ul id="question-list" style="display: none; text-align: left; margin-top: 15px; padding-left: 20px;">
+    <li><a href="pdfs/SEM4-OS Tools-2023.pdf" class="button" download>📄 Sem 4 OST 2023</a></li>
+    <li><a href="pdfs/SEM4-OS-2023.pdf" class="button" download>📄 Sem 4 Operating System 2023</a></li>
+    <li><a href="pdfs/SEM4-M&A-2023.pdf" class="button" download>📄 Sem 4 M&A 2023</a></li>
+    <li><a href="pdfs/SEM4-Python-2023.pdf" class="button" download>📄 Sem 4 Python 2023</a></li>
+  </ul>
+</div>
+
 
   <script>
     const name = localStorage.getItem("studentName") || "Student";
@@ -218,6 +229,15 @@ function clearCalculator() {
 
 }
 
+function toggleNotes() {
+  const notesList = document.getElementById("notes-list");
+  notesList.style.display = notesList.style.display === "none" ? "block" : "none";
+}
+
+function togglePapers() {
+  const paperList = document.getElementById("question-list");
+  paperList.style.display = paperList.style.display === "none" ? "block" : "none";
+}
 
 </script>
 

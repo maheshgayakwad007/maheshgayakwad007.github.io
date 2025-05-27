@@ -105,12 +105,18 @@
 
   <div class="dashboard">
     <div class="tool">
-      <h3>📚 Notes Download</h3>
-      <p>Download important notes for your semester.</p>
-      <a href="journals/SEM4-M&A LAB-Journal-2025.pdf" class="button" >M&A HTML Journal 2025</a><br>
-      <a href="journals/SEM4-PythonLAB-Journal-2025.pdf" class="button" download>Python Lab Journal </a><br> 
-    </div>
-  </div>
+  <h3>📚 Notes Download</h3>
+  <p>Click below to view available notes.</p>
+  <a href="#" class="button" onclick="toggleNotes()">Show Notes</a>
+
+  <!-- Notes list hidden initially -->
+  <ul id="notes-list" style="display: none; text-align: left; margin-top: 15px; padding-left: 20px;">
+    <li><a href="journals/SEM4-M&A LAB-Journal-2025.pdf" class="button" download>📄 Sem 4 M&A Journal 2025</a></li>
+    <li><a href="journals/SEM4-PythonLAB-Journal-2025.pdf" class="button" download>📄 Sem 4 Python Journal 2025</a></li>
+  </ul>
+</div>
+
+
     <div class="tool">
       <h3>📝 Assignment Upload</h3>
       <p>Submit your assignments here easily.</p>
@@ -130,13 +136,19 @@
     </div>
 
     <div class="tool">
-      <h3>📄 Question Papers</h3>
-      <p>Download previous year question papers:</p>
-      <a href="pdfs/SEM4-OS Tools-2023.pdf" class="button" download>Sem 4 OST 2023</a><br>
-      <a href="pdfs/SEM4-OS-2023.pdf" class="button" download>Sem 4 Operating System 2023</a><br>
-      <a href="pdfs/SEM4-M&A-2023.pdf" class="button" download>Sem 4 M&A 2023</a>
-     <a href="pdfs/SEM4-Python-2023.pdf" class="button" download>Sem 4 Python 2023</a>
-    </div>
+  <h3>📄 Question Papers</h3>
+  <p>Click below to view/download previous year question papers.</p>
+  <a href="#" class="button" onclick="togglePapers()">Show Question Papers</a>
+
+  <!-- Question papers list hidden initially -->
+  <ul id="question-list" style="display: none; text-align: left; margin-top: 15px; padding-left: 20px;">
+    <li><a href="pdfs/SEM4-OS Tools-2023.pdf" class="button" download>📄 Sem 4 OST 2023</a></li>
+    <li><a href="pdfs/SEM4-OS-2023.pdf" class="button" download>📄 Sem 4 Operating System 2023</a></li>
+    <li><a href="pdfs/SEM4-M&A-2023.pdf" class="button" download>📄 Sem 4 M&A 2023</a></li>
+    <li><a href="pdfs/SEM4-Python-2023.pdf" class="button" download>📄 Sem 4 Python 2023</a></li>
+  </ul>
+</div>
+
   </div>
 
   <script>
@@ -218,6 +230,17 @@ function clearCalculator() {
   // Hide clear button again
   document.getElementById("clear-button").style.display = 'none';
 }
+
+function toggleNotes() {
+  const notesList = document.getElementById("notes-list");
+  notesList.style.display = notesList.style.display === "none" ? "block" : "none";
+}
+
+function togglePapers() {
+  const paperList = document.getElementById("question-list");
+  paperList.style.display = paperList.style.display === "none" ? "block" : "none";
+}
+
 
 </script>
 </body>
