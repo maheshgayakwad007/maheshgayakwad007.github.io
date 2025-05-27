@@ -2,67 +2,101 @@
 <html>
 <head>
   <title> III SEM Student Dashboard</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
   <style>
+  body {
+    font-family: 'Segoe UI', sans-serif;
+    background-color: #f3f4f6;
+    text-align: center;
+    padding: 50px;
+  }
+
+  h2 {
+    color: #333;
+  }
+
+  .dashboard {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+    max-width: 1000px;
+    margin: 30px auto;
+  }
+
+  .tool {
+    background-color: white;
+    border-radius: 15px;
+    padding: 20px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    transition: 0.3s ease;
+  }
+
+  .tool:hover {
+    transform: translateY(-5px);
+  }
+
+  .tool h3 {
+    margin-bottom: 10px;
+    color: #2c3e50;
+  }
+
+  .tool p {
+    font-size: 14px;
+    color: #666;
+  }
+
+  a.button {
+    display: inline-block;
+    margin: 5px;
+    padding: 10px 15px;
+    background-color: #007bff;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    font-size: 14px;
+  }
+
+  a.button:hover {
+    background-color: #0056b3;
+  }
+
+  #cgpa-calculator {
+    display: none;
+  }
+
+  /* Responsive Adjustments */
+  @media (max-width: 600px) {
     body {
-      font-family: 'Segoe UI', sans-serif;
-      background-color: #f3f4f6;
-      text-align: center;
-      padding: 50px;
-    }
-
-    h2 {
-      color: #333;
-    }
-
-    .dashboard {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 20px;
-      max-width: 1000px;
-      margin: 30px auto;
+      padding: 30px 15px;
     }
 
     .tool {
-      background-color: white;
-      border-radius: 15px;
-      padding: 20px;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-      transition: 0.3s ease;
-    }
-
-    .tool:hover {
-      transform: translateY(-5px);
-    }
-
-    .tool h3 {
-      margin-bottom: 10px;
-      color: #2c3e50;
-    }
-
-    .tool p {
-      font-size: 14px;
-      color: #666;
+      padding: 15px;
     }
 
     a.button {
-      display: inline-block;
-      margin: 5px;
-      padding: 10px 15px;
-      background-color: #007bff;
-      color: white;
-      text-decoration: none;
-      border-radius: 5px;
+      width: 100%;
+      box-sizing: border-box;
     }
 
-    a.button:hover {
-      background-color: #0056b3;
+    .dashboard {
+      grid-template-columns: 1fr;
     }
 
-    #cgpa-calculator {
-  display: none;
-}
+    h2 {
+      font-size: 22px;
+    }
 
-  </style>
+    .tool h3 {
+      font-size: 18px;
+    }
+
+    .tool p {
+      font-size: 13px;
+    }
+  }
+</style>
 </head>
 <body>
 
