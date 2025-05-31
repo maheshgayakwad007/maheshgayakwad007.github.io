@@ -4,18 +4,42 @@
   <title>Student Portal - Limbda</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
+    * {
+      box-sizing: border-box;
+    }
+
     body {
       font-family: Arial, sans-serif;
-      text-align: center;
-      padding: 50px;
       background-color: #f4f6f8;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      min-height: 100vh;
+      padding: 20px;
+      margin: 0;
+    }
+
+    h2 {
+      margin-bottom: 30px;
+      font-size: 24px;
+      text-align: center;
+      color: #333;
+    }
+
+    .form-container {
+      width: 100%;
+      max-width: 350px;
+      background: white;
+      padding: 30px 20px;
+      border-radius: 12px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
     }
 
     input, select, button {
+      width: 100%;
       padding: 12px;
-      margin: 10px;
-      width: 90%;
-      max-width: 300px;
+      margin: 10px 0;
       font-size: 16px;
       border: 1px solid #ccc;
       border-radius: 8px;
@@ -23,8 +47,9 @@
 
     button {
       background-color: #007bff;
-      color: white;
+      color: white !important;
       border: none;
+      font-weight: bold;
       transition: background-color 0.3s ease;
       cursor: pointer;
     }
@@ -34,18 +59,16 @@
     }
 
     @media (max-width: 600px) {
-      body {
-        padding: 30px 15px;
+      h2 {
+        font-size: 20px;
+      }
+
+      .form-container {
+        padding: 25px 15px;
       }
 
       input, select, button {
-        width: 100%;
-        max-width: none;
         font-size: 15px;
-      }
-
-      h2 {
-        font-size: 20px;
       }
     }
   </style>
@@ -53,19 +76,19 @@
 <body>
   <h2>🎓 Welcome to Limbda Student Portal</h2>
 
-  <input type="text" id="name" placeholder="Enter your name" required />
-  <br>
-  <select id="semester-select" name="semester" required>
-    <option value="">Select Semester</option>
-    <option value="sem1">Semester 1</option>
-    <option value="sem2">Semester 2</option>
-    <option value="sem3">Semester 3</option>
-    <option value="sem4">Semester 4</option>
-    <option value="sem5">Semester 5</option>
-    <option value="sem6">Semester 6</option>
-  </select>
-  <br>
-  <button onclick="goToDashboard()">Enter Dashboard</button>
+  <div class="form-container">
+    <input type="text" id="name" placeholder="Enter your name" required />
+    <select id="semester-select" name="semester" required>
+      <option value="">Select Semester</option>
+      <option value="sem1">Semester 1</option>
+      <option value="sem2">Semester 2</option>
+      <option value="sem3">Semester 3</option>
+      <option value="sem4">Semester 4</option>
+      <option value="sem5">Semester 5</option>
+      <option value="sem6">Semester 6</option>
+    </select>
+    <button onclick="goToDashboard()">Enter Dashboard</button>
+  </div>
 
   <script>
     function goToDashboard() {
@@ -77,11 +100,9 @@
         return;
       }
 
-      // Save to localStorage
       localStorage.setItem("studentName", name);
       localStorage.setItem("studentSemester", semester.replace('sem', ''));
 
-      // Redirect
       window.location.href = `dashboard-${semester}.html`;
     }
   </script>

@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Game Zone</title>
+  <style>
+    body { font-family: Arial, sans-serif; text-align: center; padding: 20px; }
+    h1 { margin-bottom: 30px; }
+    .game-menu button {
+      padding: 12px 24px;
+      margin: 10px;
+      font-size: 18px;
+      cursor: pointer;
+      border-radius: 5px;
+      border: none;
+      background-color: #007bff;
+      color: white;
+      transition: background-color 0.3s ease;
+    }
+    .game-menu button:hover {
+      background-color: #0056b3;
+    }
+    #game-container {
+      margin-top: 40px;
+      display: none;
+    }
+    #board {
+      display: grid;
+      grid-template-columns: repeat(3, 80px);
+      grid-gap: 5px;
+      justify-content: center;
+      margin: 20px auto;
+    }
+    .cell {
+      width: 80px;
+      height: 80px;
+      border: 2px solid #007bff;
+      font-size: 50px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      cursor: pointer;
+      user-select: none;
+    }
+    #game-status {
+      margin-top: 15px;
+      color: #28a745;
+      font-weight: bold;
+    }
+    #restart-btn {
+      margin-top: 15px;
+      padding: 8px 15px;
+      border: none;
+      border-radius: 5px;
+      background: #dc3545;
+      color: #fff;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>🎮 Game Zone</h1>
+
+  <div class="game-menu">
+    <button onclick="loadTicTacToe()">Play Tic-Tac-Toe</button>
+    <!-- Add more buttons here for other games in the future -->
+  </div>
+
+  <div id="game-container">
+    <!-- Tic Tac Toe board -->
+    <div id="board"></div>
+    <button id="restart-btn" onclick="resetGame()">Restart Game</button>
+    <div id="game-status"></div>
+  </div>
+
+  <script>
+    // Tic-Tac-Toe variables and functions
+    let boardState = Array(9).fill(null);
+    let currentPlayer = 'X';
+    let gameActive = false;
+
+    const boardDiv = document.getElementById('board');
+    const statusDiv = document.getElementById('game-status');
+    const gameContainer = document.getElementById('game-container');
+
+    function loadTicTacToe() {
+      gameContainer.style.display = 'block';
+      boardDiv.innerHTML = ''; // clear previous board
+
+      // Create 9 cells
+      for (let i = 0; i < 9; i++) {
+        const cell = document.createElement('div');
+        cell.classList.add('cell');
+        cell.dataset.cellIndex = i;
+        cell.addEventListener('click', handleCellClick);
+        boardDiv.appendChild(cell);
+      }
+
+      startGame();
+    }
+
+    function startGame() {
+      boardState.fill(null);
+      currentPlayer = 'X';
+      gameActive = true;
+      statusDiv.textContent = `Player ${currentPlayer}'s turn`;
+
+      const cells = document.querySelectorAll('.cell');
+      cells.forEach(cell => {
+        cell.textContent = '';
+        cell.style.pointerEvents = 'auto';
+      });
+    }
+
+    function handleCellClick(e) {
+      const index = parseInt(e.target.dataset.cellIndex);
+      if (boardState[index] || !gameActive) return;
+
+      boardState[index] = currentPlayer;
+      e.target.textContent = currentPlayer;
+
+      if (checkWin()) {
+        statusDiv.textContent = `🎉 Player ${currentPlayer} wins!`;
+        endGame();
+      } else if (boardState.every(cell => cell)) {
+        statusDiv.textContent = "It's a draw!";
+        endGame();
+      } else {
+        currentPlayer = currentPlayer === 'X' ? 'O' : 'X';
+        statusDiv.textContent = `Player ${currentPlayer}'s turn`;
+      }
+    }
+
+    function checkWin() {
+      const winCombos = [
+        [0,1,2],[3,4,5],[6,7,8],
+        [0,3,6],[1,4,7],[2,5,8],
+        [0,4,8],[2,4,6]
+      ];
+
+      return winCombos.some(combo => 
+        combo.every(index => boardState[index] === currentPlayer)
+      );
+    }
+
+    function endGame() {
+      gameActive = false;
+      document.querySelectorAll('.cell').forEach(cell => {
+        cell.style.pointerEvents = 'none';
+      });
+    }
+
+    function resetGame() {
+      startGame();
+    }
+  </script>
+
+</body>
+</html>
