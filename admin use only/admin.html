@@ -50,13 +50,12 @@
   </style>
   <script>
     // 🔐 Admin password protection
-    const password = "MAHI@2005"; // <--- Change your password here
+    // Comment out or remove the password check for now
 
-    const userInput = prompt("Enter admin password:");
-    if (userInput !== password) {
-      alert("❌ Unauthorized access. Redirecting...");
-      window.location.href = "https://www.google.com"; // redirect if wrong
-    }
+// Directly load the user data without password
+
+loadUserData();
+
   </script>
 </head>
 <body>

@@ -1,7 +1,7 @@
 import { initializeApp } from "firebase/app";
-import { getFirestore, collection, getDocs } from "firebase/firestore";
+import { getFirestore, collection, getDocs, query, orderBy } from "firebase/firestore";
 
-// Firebase config (same as app.js)
+// Your Firebase config here
 const firebaseConfig = {
   apiKey: "AIzaSyDz8rRQT76Jqe_yVaeUlqrPXGfFuBDIpSE",
   authDomain: "limbda-d7fe1.firebaseapp.com",
@@ -16,30 +16,33 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
-// Fetch user data and display
-async function fetchUserData() {
-  const tableBody = document.querySelector('#users-table tbody');
-  const querySnapshot = await getDocs(collection(db, "users"));
+async function loadUserData() {
+  const usersTableBody = document.querySelector("#users-table tbody");
+
+  const q = query(collection(db, "users"), orderBy("timestamp", "desc"));
+  const querySnapshot = await getDocs(q);
 
   querySnapshot.forEach((doc) => {
-    const data = doc.data();
-    const row = document.createElement('tr');
+    const user = doc.data();
+    const row = document.createElement("tr");
 
-    const nameCell = document.createElement('td');
-    nameCell.textContent = data.name;
+    const nameCell = document.createElement("td");
+    nameCell.textContent = user.name || "N/A";
 
-    const semCell = document.createElement('td');
-    semCell.textContent = data.semester;
+    const semCell = document.createElement("td");
+    semCell.textContent = user.semester || "N/A";
 
-    const timeCell = document.createElement('td');
-    const timestamp = data.timestamp?.toDate();
-    timeCell.textContent = timestamp ? timestamp.toLocaleString() : "N/A";
+    const timeCell = document.createElement("td");
+    const date = user.timestamp ? user.timestamp.toDate() : null;
+    timeCell.textContent = date ? date.toLocaleString() : "N/A";
 
     row.appendChild(nameCell);
     row.appendChild(semCell);
     row.appendChild(timeCell);
-    tableBody.appendChild(row);
+
+    usersTableBody.appendChild(row);
   });
 }
 
-fetchUserData();
+// Call loadUserData immediately (or after removing password check)
+loadUserData();
