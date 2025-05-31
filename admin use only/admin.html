@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Admin Panel - Limbda</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+      background-color: #f9f9f9;
+    }
+
+    h2 {
+      color: #333;
+      text-align: center;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 30px;
+    }
+
+    th, td {
+      padding: 12px;
+      text-align: left;
+      border-bottom: 1px solid #ccc;
+    }
+
+    th {
+      background-color: #007bff;
+      color: white;
+    }
+
+    tr:hover {
+      background-color: #f1f1f1;
+    }
+
+    .back-btn {
+      display: block;
+      margin-top: 20px;
+      padding: 10px 20px;
+      background-color: #007bff;
+      color: white;
+      text-align: center;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+  </style>
+  <script>
+    // 🔐 Admin password protection
+    const password = "MAHI@2005"; // <--- Change your password here
+
+    const userInput = prompt("Enter admin password:");
+    if (userInput !== password) {
+      alert("❌ Unauthorized access. Redirecting...");
+      window.location.href = "https://www.google.com"; // redirect if wrong
+    }
+  </script>
+</head>
+<body>
+  <h2>📋 Student Logins</h2>
+  <table id="users-table">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Semester</th>
+        <th>Time</th>
+      </tr>
+    </thead>
+    <tbody>
+      <!-- Data will be loaded here by admin.js -->
+    </tbody>
+  </table>
+
+  <!-- 🔁 Load admin.js -->
+  <script type="module" src="admin.js"></script>
+</body>
+</html>
