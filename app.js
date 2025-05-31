@@ -7,11 +7,12 @@ const firebaseConfig = {
   apiKey: "AIzaSyDz8rRQT76Jqe_yVaeUlqrPXGfFuBDIpSE",
   authDomain: "limbda-d7fe1.firebaseapp.com",
   projectId: "limbda-d7fe1",
-  storageBucket: "limbda-d7fe1.firebasestorage.app",
+  storageBucket: "limbda-d7fe1.appspot.com",
   messagingSenderId: "368935926260",
   appId: "1:368935926260:web:2a73898316e72a8ad761a1",
   measurementId: "G-0Q0LD8GHRP"
 };
+
 
 // Initialize Firebase and Firestore
 const app = initializeApp(firebaseConfig);
