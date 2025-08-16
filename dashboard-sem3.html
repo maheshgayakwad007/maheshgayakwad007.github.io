@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title> III SEM Student Dashboard</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <style>
+  body {
+    font-family: 'Segoe UI', sans-serif;
+    background-color: #f3f4f6;
+    text-align: center;
+    padding: 50px;
+  }
+
+  h2 {
+    color: #333;
+  }
+
+  .dashboard {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+    max-width: 1000px;
+    margin: 30px auto;
+  }
+
+  .tool {
+    background-color: white;
+    border-radius: 15px;
+    padding: 20px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    transition: 0.3s ease;
+  }
+
+  .tool:hover {
+    transform: translateY(-5px);
+  }
+
+  .tool h3 {
+    margin-bottom: 10px;
+    color: #2c3e50;
+  }
+
+  .tool p {
+    font-size: 14px;
+    color: #666;
+  }
+
+  a.button {
+    display: inline-block;
+    margin: 5px;
+    padding: 10px 15px;
+    background-color: #007bff;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    font-size: 14px;
+  }
+
+  a.button:hover {
+    background-color: #0056b3;
+  }
+
+  #cgpa-calculator {
+    display: none;
+  }
+
+  /* Responsive Adjustments */
+  @media (max-width: 600px) {
+    body {
+      padding: 30px 15px;
+    }
+
+    .tool {
+      padding: 15px;
+    }
+
+    a.button {
+      width: 100%;
+      box-sizing: border-box;
+    }
+
+    .dashboard {
+      grid-template-columns: 1fr;
+    }
+
+    h2 {
+      font-size: 22px;
+    }
+
+    .tool h3 {
+      font-size: 18px;
+    }
+
+    .tool p {
+      font-size: 13px;
+    }
+  }
+
+  /* Additional styles for notes */
+   .paper-button {
+  display: inline-block;
+  background-color: #007bff;
+  color: white !important;  /* Force white text */
+  padding: 10px 15px;
+  border-radius: 8px;
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: bold;
+  transition: background-color 0.3s, transform 0.3s;
+}
+
+  /* Additional styles for notes and papers */
+  #notes-list {
+    list-style-type: none;
+    padding-left: 0;
+    text-align: left;
+    margin-top: 15px;
+  }
+
+  #notes-list li {
+    margin-bottom: 10px;
+  }
+
+  #notes-list a {
+    text-decoration: none;
+    color: #007bff;
+    font-weight: bold;
+  }
+
+  #notes-list a:hover {
+    text-decoration: underline;
+  }
+.paper-list {
+  list-style-type: disc;
+  padding-left: 25px;
+  text-align: left;
+  animation: fadeInList 0.4s ease-in-out;
+}
+
+.paper-list li {
+  margin-bottom: 10px;
+  padding-left: 10px;
+}
+
+.paper-button {
+  display: inline-block;
+  background-color: #007bff;
+  color: white;
+  padding: 10px 15px;
+  border-radius: 8px;
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: bold;
+  transition: background-color 0.3s, transform 0.3s;
+}
+
+.paper-button:hover {
+  background-color: #0056b3;
+  transform: translateX(5px);
+}
+
+@keyframes fadeInList {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.paper-list li {
+  margin-bottom: 10px;
+  padding-left: 10px;
+  opacity: 0;
+  transform: translateY(10px);
+  animation: fadeInItem 0.4s ease forwards;
+}
+
+@keyframes fadeInItem {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Game List Styles */
+#game-list li {
+  margin-bottom: 15px;
+}
+
+
+</style>
+</head>
+<body>
+
+  <h2 id="welcome"></h2>
+
+  <div class="dashboard">
+    <div class="tool">
+  <h3>📚 Notes Download</h3>
+  <p>Click below to view available notes.</p>
+  <a href="#" class="button" onclick="toggleNotes()">Show Notes</a>
+
+  <!-- Notes list hidden initially -->
+  <ul id="notes-list" style="display: none; text-align: left; margin-top: 15px; padding-left: 20px;">
+    <li><a href="journals/.pdf" class="paper-button" download>📄 Notes 1</a></li>
+    <li><a href="journals/.pdf" class="paper-button" download>📄 Notes 2</a></li>
+  </ul>
+</div>
+
+    <div class="tool">
+      <h3>📝 Assignment Upload</h3>
+      <p>Submit your assignments here easily.</p>
+      <a href="#" class="button">Upload Assignment</a>
+    </div>
+
+    <div class="tool">
+      <h3>📅 Exam Schedule</h3>
+      <a href="exam-schedule-sem3.html" class="button">View Schedule</a>
+    </div>
+
+    <div class="tool">
+      <h3>🎓 CGPA Calculator</h3>
+      <p>Calculate your CGPA semester-wise.</p>
+      <a href="#" class="button" onclick="showCalculator(event)">Open Calculator</a>
+
+      <!-- CGPA Calculator Section -->
+  <section id="cgpa-calculator" style="position: relative; background: white; border-radius: 15px; padding: 20px; max-width: 800px; margin: 50px auto; box-shadow: 0 4px 10px rgba(0,0,0,0.1);">
+  <button onclick="closeCalculator()" style="position: absolute; top: 10px; right: 15px; background: transparent; border: none; font-size: 20px; cursor: pointer;">❌</button>
+
+  <h2 style="color: #2c3e50;">🎓 CGPA Calculator</h2>
+  <p style="color: #555;">Enter SGPA for each semester below:</p>
+
+  <div id="semesters" style="margin-top: 20px;"></div>
+
+  <button onclick="addSemester()" style="margin: 10px; padding: 10px 20px; background-color: #007bff; color: white; border: none; border-radius: 5px;">➕ Add Semester</button>
+  <button onclick="calculateCGPA()" style="margin: 10px; padding: 10px 20px; background-color: #28a745; color: white; border: none; border-radius: 5px;">✅ Calculate CGPA</button>
+  <button id="clear-button" onclick="clearCalculator()" style="display: none; margin: 10px; padding: 10px 20px; background-color: #dc3545; color: white; border: none; border-radius: 5px;">❌ Clear</button>
+  <button onclick="closeCalculator()" style="margin: 10px; padding: 10px 20px; background-color: #6c757d; color: white; border: none; border-radius: 5px;">🔽 Close Calculator</button>
+
+  <h3 id="result" style="margin-top: 20px; color: #8e44ad;"></h3>
+</section>
+
+    </div>
+
+    <div class="tool">
+  <h3>📄 Question Papers</h3>
+  <p>Click below to view/download previous year question papers.</p>
+   <a href="javascript:void(0)" class="button" onclick="toggleYearPapers('2023', event)">📅 2023</a>
+   <a href="javascript:void(0)" class="button" onclick="toggleYearPapers('2024', event)">📅 2024</a>
+
+  <!-- Paper lists by year (initially hidden) -->
+  <div id="papers-2023" style="display: none;">
+  <ul class="paper-list">
+    <li><a href="pdfs/SEM4-OS Tools-2023.pdf" class="paper-button" download>📄 Sem 4 OST 2023</a></li>
+    <li><a href="pdfs/SEM4-OS-2023.pdf" class="paper-button" download>📄 Sem 4 OS 2023</a></li>
+    <li><a href="pdfs/SEM4-M&A-2023.pdf" class="paper-button" download>📄 Sem 4 M&A 2023</a></li>
+    <li><a href="pdfs/SEM4-Python-2023.pdf" class="paper-button" download>📄 Sem 4 Python 2023</a></li>
+  </ul>
+</div>
+
+<div id="papers-2024" style="display: none;">
+  <ul class="paper-list">
+    <li><a href="pdfs/SEM4-OS Tools-2024.pdf" class="paper-button" download>📄 Sem 4 OST 2024</a></li>
+    <li><a href="pdfs/SEM4-OS-2024.pdf" class="paper-button" download>📄 Sem 4 OS 2024</a></li>
+    <li><a href="pdfs/SEM4-M&A-2024.pdf" class="paper-button" download>📄 Sem 4 M&A 2024</a></li>
+    <li><a href="pdfs/SEM4-Python-2024.pdf" class="paper-button" download>📄 Sem 4 Python 2024</a></li>
+  </ul>
+</div>
+    </div>
+
+    <div class="tool">
+  <h3>🎮 Games Zone 🕹️</h3>
+  <p>Play Games to relax your mind and brain 😁</p>
+  <a href="#" class="button" onclick="toggleGameList()">Play 🎮 Games</a>
+
+  <ul id="game-list" style="display: none; margin-top: 15px; list-style-type: none; padding-left: 0;">
+    <li><a href="Games/tic-tac-toe.html" class="paper-button">🎯 Tic Tac Toe</a></li>
+    <!-- You can add more games like this -->
+     <li><a href="Games/rock-paper-scissors.html" class="paper-button">✊ Rock Paper Scissors</a></li>
+    <li><a href="Games/snake.html" class="paper-button">🐍 Snake Game</a></li>
+
+    <!-- <li><a href="snake.html" class="paper-button">🐍 Snake Game</a></li> -->
+  </ul>
+</div>
+
+  <script>
+    const name = localStorage.getItem("studentName") || "Student";
+    const semester = localStorage.getItem("studentSemester") || "Unknown";
+
+    document.getElementById("welcome").innerText = `👋 Hello, ${name} from Sem ${semester}!`;
+  </script>
+
+
+<script>
+  let semesterCount = 0;
+
+  function addSemester() {
+  if (semesterCount >= 6) {
+    alert("You can only add up to 6 semesters.");
+    return;
+  }
+  semesterCount++;
+  const div = document.createElement('div');
+  div.style.marginBottom = "10px";
+  div.innerHTML = `
+    <label>Semester ${semesterCount} SGPA:
+      <input type="number" step="0.01" min="0" max="10" class="sgpa" style="padding:5px; border-radius:5px; margin:5px;">
+    </label><br>
+  `;
+  document.getElementById("semesters").appendChild(div);
+}
+
+  function calculateCGPA() {
+    const sgpaInputs = document.querySelectorAll(".sgpa");
+    let totalSgpa = 0, count = 0;
+
+    sgpaInputs.forEach(input => {
+      const sgpa = parseFloat(input.value);
+      if (!isNaN(sgpa)) {
+        totalSgpa += sgpa;
+        count++;
+      }
+    });
+
+    const cgpa = count ? (totalSgpa / count).toFixed(2) : "Invalid input";
+    document.getElementById("result").innerText = `🎯 Your CGPA is: ${cgpa}`;
+
+        document.getElementById("clear-button").style.display = 'inline-block';
+
+  }
+
+  function showCalculator(event) {
+  event.preventDefault(); // prevent the default link behavior
+  document.getElementById('cgpa-calculator').style.display = 'block';
+  // Optionally, scroll to the calculator:
+  document.getElementById('cgpa-calculator').scrollIntoView({ behavior: 'smooth' });
+}
+
+function clearCalculator() {
+  // Clear all semester input divs
+  document.getElementById("semesters").innerHTML = '';
+
+  // Reset semester count
+  semesterCount = 0;
+
+  // Clear result
+  document.getElementById("result").innerText = '';
+
+  // Hide clear button again
+  document.getElementById("clear-button").style.display = 'none';
+}
+
+function closeCalculator() {
+  document.getElementById('cgpa-calculator').style.display = 'none';
+}
+
+function toggleNotes() {
+  const notesList = document.getElementById("notes-list");
+  notesList.style.display = notesList.style.display === "none" ? "block" : "none";
+}
+
+function toggleYearPapers(year, event) {
+  if (event) event.preventDefault(); // Prevent scrolling
+
+  const allYears = ['2023', '2024'];
+
+  allYears.forEach(y => {
+    const section = document.getElementById(`papers-${y}`);
+    if (section) {
+      if (y === year) {
+        const isVisible = section.style.display === 'block';
+        section.style.display = isVisible ? 'none' : 'block';
+
+        if (!isVisible) {
+          applyStaggeredAnimation(`papers-${y}`);
+        }
+      } else {
+        section.style.display = 'none';
+      }
+    }
+  });
+}
+
+
+function applyStaggeredAnimation(listId) {
+  const items = document.querySelectorAll(`#${listId} li`);
+  items.forEach((item, index) => {
+    item.style.animationDelay = `${index * 0.1}s`;
+  });
+}
+function toggleGameList() {
+  const gameList = document.getElementById("game-list");
+  gameList.style.display = gameList.style.display === "none" ? "block" : "none";
+}
+</script>
+
+</body>
+</html>
